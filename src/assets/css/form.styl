@@ -1,0 +1,45 @@
+.inline-two-col
+        display flex
+        flex-wrap wrap
+        justify-content space-between
+        align-items flex-end
+        .ant-row
+                flex 0 0 calc((100% - 16px) / 2)
+.inline-three-col
+        display flex
+        flex-direction row
+        flex-wrap wrap
+        justify-content flex-start
+        align-content flex-start
+        margin 0 -8px
+        .ant-row
+                flex 0 0 calc(33.333% - 16px)
+                &.inline-block-item
+                        margin 0 8px
+                &.line-block-item
+                        flex 0 0 calc(100% - 16px)
+                        margin 0 8px
+                        padding-right 0
+.inline-four-col
+        display flex
+        flex-direction row
+        flex-wrap wrap
+        justify-content flex-start
+        align-content flex-start
+        .ant-row
+                flex 0 0 25%
+                &.inline-block-item
+                        padding-right 16px
+                        &:nth-child(4n)
+                                padding-right 0
+
+.ant-input-disabled,.ant-input-number-input
+        color #333333 !important
+
+.inline-two-col,.inline-four-col
+        .ant-row
+                &.line-block-item
+                        flex 0 0 100%
+                        padding-right 0
+
+

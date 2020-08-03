@@ -1,0 +1,44 @@
+&::-webkit-scrollbar
+        width: 16px
+        height: 16px
+
+&::-webkit-scrollbar-track
+        background transparent
+
+//滚动条的滑块
+&::-webkit-scrollbar-corner
+        background: transparent
+&::-webkit-scrollbar-thumb
+        &:vertical
+                transition all ease .3s;
+                background url("../img/bg-scroll-vertical.png") no-repeat center center/6px calc(100% - 6px),
+                        url("../img/bg-scroll-vertical-bottom.png") no-repeat center bottom /6px 3px,
+                        url('../img/bg-scroll-vertical-top.png')no-repeat center top/6px 3px
+        &:horizontal
+                transition all ease .3s
+                border-radius 130px
+                background-image url("../img/bg-scroll-horizontal.png"),url("../img/bg-scroll-horizontal-left.png"),url('../img/bg-scroll-horizontal-right.png')
+                background-repeat no-repeat,no-repeat,no-repeat
+                background-position center center,left center,right center
+                background-size calc(100% - 6px)  6px,3px 6px,3px 6px
+                //background url("../img/bg-scroll-horizontal.png") no-repeat center center/100%  calc(6px),
+                //url("../img/bg-scroll-horizontal-left.png") no-repeat left center  /3px 6px,
+                //url('../img/bg-scroll-horizontal-right.png') no-repeat  right center /3px 6px
+        &:hover
+                &:vertical
+                        transition all ease .3s;
+                        background url("../img/bg-scroll-vertical-hover.png") no-repeat center center/6px calc(100% - 6px),
+                        url("../img/bg-scroll-vertical-bottom-hover.png") no-repeat center bottom /6px 3px,
+                        url('../img/bg-scroll-vertical-top-hover.png') no-repeat center top/6px 3px
+                &:horizontal
+                        transition all ease .3s
+                        border-radius 130px
+                        background-image url("../img/bg-scroll-horizontal-hover.png"),url("../img/bg-scroll-horizontal-left-hover.png"),url('../img/bg-scroll-horizontal-right-hover.png')
+                        background-repeat no-repeat,no-repeat,no-repeat
+                        background-position center center,left center,right center
+                        background-size calc(100% - 6px)  6px,3px 6px,3px 6px
+.ant-table-scroll
+        ::-webkit-scrollbar-track
+                background #fafafa
+        ::-webkit-scrollbar-corner
+                background: #fafafa
