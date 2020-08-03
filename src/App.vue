@@ -9,21 +9,29 @@
                         return {
                                 navRouter: [
                                         {
-                                                path:'project',
-                                                name:'模块一'
+                                                path:'home',
+                                                name:'首页'
+                                        },
+                                        {
+                                                path:'roster',
+                                                name:'花名册'
                                         },
                                         {
                                                 path:'expenditure',
-                                                name:'模块二'
-                                        },
-                                        {
-                                                path:'achievement',
-                                                name:'模块三'
+                                                name:'考勤管理'
                                         },
                                         {
                                                 path:'flow',
-                                                name:'流程管理'
-                                        }
+                                                name:'工资管理'
+                                        },
+                                        /* {
+                                                path:'achievement',
+                                                name:'信息上报'
+                                        },
+                                        {
+                                                path:'achievement',
+                                                name:'系统管理'
+                                        }, */
 
                                 ]
                         }

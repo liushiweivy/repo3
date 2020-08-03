@@ -95,7 +95,7 @@ new Vue({
                                         this.getUserInfo();        
                                 } else {
                                         // 本地调试无token，code重新获取新的token
-                                        login("f7ceddf9e3b33614b8d73b51a14c4761").then(res => {
+                                        login("aa713ab78d24356797846380c7da67ca").then(res => {
                                                 if (res.success) {
                                                         this.getUserInfo(res);
                                                 }
@@ -115,7 +115,7 @@ new Vue({
                         this.setUserName(userInfo.name);
                         this.setUserAvatar(userInfo.avatar);
                         if (this.$route.path === "/") {
-                                this.$router.push({ path: "/project" });
+                                this.$router.push({ path: "/roster" });
                         }
                         // this.loading(1);
                 }

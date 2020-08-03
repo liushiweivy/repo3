@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import flowRouter from './model/flow-router-config'
-import projectRouter from './model/project-router-config'
+// import projectRouter from './model/project-router-config'
 import achievementRouter from './model/achievement-router-config'
+import homeRouter from './model/home-router-config'
+import rosterRouter from './model/roster-router-config'
 
 import notFound from "../view/public/notFound"
 
@@ -15,6 +17,6 @@ export default new Router ({
                         path:'/expenditure',
                         component:notFound
                 },
-                flowRouter,projectRouter,achievementRouter
+                flowRouter,achievementRouter,homeRouter,rosterRouter
         ]
 })
