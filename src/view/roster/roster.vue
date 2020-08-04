@@ -16,7 +16,11 @@ export default {
   components: {
     treeNode,
   },
-  data() {},
+  data() {
+          return {
+
+          };
+  },
   methods: {},
 };
 </script>

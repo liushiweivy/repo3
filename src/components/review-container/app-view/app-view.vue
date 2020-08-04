@@ -64,6 +64,7 @@
                 .page-content
                         position relative
                         flex 1
+                        overflow-y auto
                 .header
                         position relative
                         background #3998f7
