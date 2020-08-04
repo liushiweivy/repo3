@@ -9,6 +9,10 @@
                                 <slot name="nav"><nav-top-menu :nav-menu="navRouter"></nav-top-menu></slot>
                                 
                                 <div class="user">
+                                        <div class="company">
+                                                <img src="../../../assets/img/bg-company.png" >
+                                                <span class="text">陕西华筑科技有限公司</span>
+                                        </div>
                                         <div class="avatar">
                                                 <img :src="$store.state.user.avatar" alt="" style="width: 100%;height: 100%" v-if="$store.state.user.avatar">
                                                 <span class="text" v-else>{{$store.state.user.name.substr(0,1)}}</span>
@@ -66,16 +70,16 @@
                         flex 1
                 .header
                         position relative
-                        background #3998f7
+                        background #ffffff
                         overflow hidden
-                        padding 0 20px
+                        padding 0 59px
                 .content
                         position relative
                 .logo
-                        width: 240px;
-                        height: 42px
-                        background: url("../../../assets/img/bg-logo@2x.png")no-repeat center /auto 36px;
-                        margin: 11px 20px 11px 0;
+                        width: 141px;
+                        height: 64px
+                        background: url("../../../assets/img/bg-logo.png")no-repeat center /auto 100%;
+                        margin: 0;
                         float: left;
                 .user
                         display flex
@@ -84,9 +88,21 @@
                         color #ffffff
                         position absolute
                         top 0
-                        right 24px
+                        right 59px
                         height 100%
                         z-index 101
+                        .company
+                                padding-right 13px
+                                img
+                                        width 16px
+                                        height 16px  
+                                        align-items center
+                                        justify-content center 
+                                .text
+                                        font-size 16px
+                                        color #000000  
+                                        padding-right 13px
+                                        border-right 1px solid #EDEDED   
                         .avatar
                                 width 40px
                                 height 40px
