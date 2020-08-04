@@ -25,8 +25,8 @@
 
 <style scoped lang="stylus">
         .nav-top-menu
-                position relative
-                z-index 100
+                // position relative
+                // z-index 100
                 .router-wrapper
                         display flex
                         .nav-router

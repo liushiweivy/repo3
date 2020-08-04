@@ -31,7 +31,7 @@
                 left 0
                 display flex
                 flex-direction column
-                background #F0F2F5
+                background rgba(245,245,247,1)
                 height 100%
                 width 100%
                 .description-tab-wrapper
