@@ -121,12 +121,13 @@ export default {
 
     .worker-anchor {
       // position relative
-      width 81px
+      width 92px
     }
 
     .worker-info {
+      flex 1
       padding-left: 24px;
-      width: 100%;
+      // width: 100%;
     }
   }
 }

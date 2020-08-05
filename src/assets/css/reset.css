@@ -46,10 +46,24 @@ li {
     list-style: none;
 }
 /* anchor定位 */
+.ant-anchor-wrapper{
+        overflow:visible
+}
 .ant-anchor-wrapper .ant-anchor-ink{
         right: 0!important;
         left: auto!important;
+        
 }
+.ant-anchor-wrapper .ant-anchor-link{
+        font-size: 14px;
+        line-height: 30px;
+        text-align: right;
+        padding: 0;
+}
+.ant-anchor-wrapper .ant-anchor {
+        margin-top: 20px;
+        padding-right: 24px;
+    }
 
 .ant-input-group-addon .ant-input-search-button{
         border-left: 0 solid #000000;
