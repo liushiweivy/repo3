@@ -22,6 +22,9 @@ export default {
                                         component:resolve=>(require(['@/view/achievement/achievementList/paperRegister/paperRegister'],resolve)),
                                 }
                         ] */
+                },{
+                        path:'worker',
+                        component:resolve=>(require(['@/view/roster/worker/worker'],resolve))
                 }
         ]
 }

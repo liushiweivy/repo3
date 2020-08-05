@@ -9,7 +9,11 @@
     <div class="tree-wrap">
       <div class="tree-box" ref="treeBox" :style="`height:${boxHeight}px;background:#ccc;`">
         <!-- 第一个父节点 -->
-        <div class="tree-node big-node" :class="isTurnOnTree ? 'act-node':''" @click="openNode">
+        <div
+          class="tree-node big-node"
+          :class="isTurnOnTree ? 'act-node':''"
+          @click="openFirstNode"
+        >
           <div class="left-name">
             <span class="iconfont my-caret" :class="isOpenTree ? 'caret-act':''">&#xe61d;</span>
             <span class="iconfont floder-act">&#xe61c;</span>
@@ -28,7 +32,7 @@
           <div
             class="tree-node big-node"
             :class="item.isTurnOn ? 'act-node':''"
-            @click="openChildNode(item)"
+            @click="openSecondNode(item)"
           >
             <div class="left-name">
               <span
@@ -56,7 +60,7 @@
             <div
               class="tree-node big-node"
               :class="single.isTurnOn ? 'act-node':''"
-              @click="openChild2Node(item.id,single.id)"
+              @click="openThirdNode(item.id,single.id,item,single)"
             >
               <div class="left-name">
                 <span
@@ -79,7 +83,7 @@
               :key="index"
               class="tree-node big-node"
               :class="list.isTurnOn ? 'act-node':''"
-              @click="showCCHandle(item,single,list)"
+              @click="openFouthNode(item,single,list)"
             >
               <div class="left-name last-child">
                 <span class="iconfont floder-act">&#xe61b;</span>
@@ -159,7 +163,7 @@ export default {
   },
   created() {
     // this.getTypeList();
-    this.openNode();
+    this.openFirstNode();
   },
 
   methods: {
@@ -179,22 +183,6 @@ export default {
         producerId: single.id,
       };
       this.isShowccChildNode = true;
-    },
-
-    // 二级子节点点击选中
-    showCCHandle(treeItem, single, list) {
-      this.searchIdInfo = {
-        instrumentProducerId: single.id,
-        instrumentTypeId: treeItem.id,
-      };
-      this.changeNum++;
-      // console.log(this.changeNum);
-      if (this.ccChild) this.ccChild.isTurnOn = false;
-      if (this.isTurnOnTree) this.isTurnOnTree = false;
-      if (this.cChild) this.cChild.isTurnOn = false;
-
-      single.isTurnOn = true;
-      this.ccChild = single;
     },
 
     // 一级子节点添加
@@ -354,11 +342,87 @@ export default {
       }
     },
 
-    // 展开二级子节点
-    openChildNode(treeItem) {
+    // 清空所有层级选中态
+    clearSelected() {
+      if (this.isTurnOnTree) this.isTurnOnTree = false;
+      this.treeData.forEach((item) => {
+        item.isTurnOn = false;
+        if (item.childData && item.childData.length) {
+          item.childData.forEach((single) => {
+            single.isTurnOn = false;
+            if (single.childData && single.childData.length) {
+              single.childData.forEach((list) => {
+                list.isTurnOn = false;
+              });
+            }
+          });
+        }
+      });
+    },
+
+    // 选中态和选中打开的高度计算
+    countHandle() {},
+
+    
+    openFirstNode() {
+      // console.log(this.treeData);
+      this.clearSelected();
+      if (!this.isTurnOnTree) this.isTurnOnTree = true;
+
+      if (this.isOpenTree) {
+        this.boxHeight = 40;
+      } else {
+        var openHeight = 40;
+        this.treeData.forEach((item) => {
+          openHeight += item.height;
+        });
+        this.boxHeight = openHeight;
+      }
+      this.isOpenTree = !this.isOpenTree;
+    },
+    openSecondNode(treeItem) {
       // console.log('child id===',id);
       // if (treeItem.count=== 0) return;
       this.clearSelected();
+
+      if(!treeItem.isTurnOn) treeItem.isTurnOn = true;
+      if (treeItem.isOpen) {
+        let addHeight = treeItem.height - 40;
+        this.boxHeight -= addHeight;
+        // item.height -= addHeight;
+        treeItem.height = 40;
+      }else{
+        treeItem.childData =[
+              {
+                id: "cd66cede-5f4c-49ce-881a-663268db4968",
+                name: "华筑筑友劳务外包(150人)",
+                address: "111",
+                contact: "111",
+                count: 1,
+                isOpen: false,
+                isTurnOn: false,
+                height: 40,
+                childData: [
+                  {
+                    id: "2323",
+                    name: "木工班组(30人)",
+                    address: "111",
+                    contact: "111",
+                    isOpen: false,
+                    isTurnOn: false,
+                  },
+                ],
+              },
+            ];
+        let addHeight = treeItem.childData.length * 40;
+        this.boxHeight += addHeight;
+        // item.height += addHeight;
+        treeItem.height = addHeight + 40;
+      }
+      treeItem.isOpen = !treeItem.isOpen;
+
+      return
+
 
       if (!treeItem.isTurnOn) {
         this.searchIdInfo = {
@@ -381,28 +445,7 @@ export default {
               this.boxHeight - this.treeData[i].childData.length * 40;
           } else {
             let res = {};
-            res.data = [
-              {
-                id: "cd66cede-5f4c-49ce-881a-663268db4968",
-                name: "华筑筑友劳务外包(150人)",
-                address: "111",
-                contact: "111",
-                count: 1,
-                isOpen: false,
-                isTurnOn: false,
-                height: 40,
-                childData: [
-                  {
-                    id: "2323",
-                    name: "木工班组(30人)",
-                    address: "111",
-                    contact: "111",
-                    isOpen: false,
-                    isTurnOn: false,
-                  },
-                ],
-              },
-            ];
+            res.data = [];
             res.data.forEach((item, index) => {
               item.isOpen = false;
               item.isTurnOn = false;
@@ -422,44 +465,30 @@ export default {
         }
       }
     },
-
-    // 清空所有层级选中态
-    clearSelected() {
-      if (this.isTurnOnTree) this.isTurnOnTree = false;
-      this.treeData.forEach((item) => {
-        item.isTurnOn = false;
-        if (item.childData && item.childData.length) {
-          item.childData.forEach((single) => {
-            single.isTurnOn = false;
-            if (single.childData && single.childData.length) {
-              single.childData.forEach((list) => {
-                list.isTurnOn = false;
-              });
-            }
-          });
-        }
-      });
-    },
-
-    // 选中态和选中打开的高度计算
-    countHandle() {
-
-    },
-
-    openChild2Node(itemId, singleId) {
+    openThirdNode(itemId, singleId,item, singleEvent) {
       this.clearSelected();
-    //   console.log(this.treeData);
-
-      for (var i = 0; i < this.treeData.length; i++) {
+      if(!singleEvent.isTurnOn) singleEvent.isTurnOn = true;
+      if (singleEvent.isOpen) {
+        let addHeight = singleEvent.childData.length * 40;
+        this.boxHeight -= addHeight;
+        item.height -= addHeight;
+        singleEvent.height = 40;
+      }else{
+        let addHeight = singleEvent.childData.length * 40;
+        this.boxHeight += addHeight;
+        item.height += addHeight;
+        singleEvent.height = addHeight + 40;
+      }
+      singleEvent.isOpen = !singleEvent.isOpen;
+        console.log(singleEvent);
+      /* for (var i = 0; i < this.treeData.length; i++) {
         if (itemId === this.treeData[i].id) {
           let children = this.treeData[i].childData;
           children.forEach((single, j) => {
             // children[j].isOpen = false;
             if (singleId === single.id) {
-              single.isTurnOn = true;
-
               if (single.isOpen) {
-                single.isOpen = false;
+                // single.isOpen=false
                 let addHeight = single.childData.length * 40;
                 this.boxHeight -= addHeight;
                 this.treeData[i].height -= addHeight;
@@ -471,43 +500,22 @@ export default {
               this.boxHeight += addHeight;
               this.treeData[i].height += addHeight;
               single.height = addHeight + 40;
-              single.isOpen = true;
+              // single.isOpen=true
 
               // this.treeData[i].isOpen = !this.treeData[i].isOpen;
               // if (!this.treeData[i].isTurnOn) this.treeData[i].isTurnOn = true;
             }
           });
         }
-      }
-      console.log(itemId, singleId, this.treeData);
+      } */
+      // console.log(itemId, singleId, this.treeData);
     },
-
-    // 展开一级子节点
-    openNode() {
-      // console.log(this.treeData);
+    openFouthNode(treeItem, single, listEvent) {
       this.clearSelected();
-      
-      if (this.isOpenTree) {
-        this.boxHeight = 40;
-        if (this.cChild) this.cChild.isTurnOn = false;
-        if (this.ccChild) this.ccChild.isTurnOn = false;
-      } else {
-        var openHeight = 40;
-        this.treeData.forEach((item) => {
-          openHeight += item.height;
-        });
-        this.boxHeight = openHeight;
-      }
-      this.isOpenTree = !this.isOpenTree;
-      if (!this.isTurnOnTree) {
-        this.isTurnOnTree = true;
-        this.searchIdInfo = {
-          instrumentProducerId: "",
-          instrumentTypeId: "",
-        };
-        this.changeNum++;
-        //  console.log(this.changeNum);
-      }
+      listEvent.isTurnOn = true;
+      this.$router.push({ path: "/roster/worker" });
+      this.$forceUpdate();
+      return;
     },
   },
 };

@@ -45,9 +45,10 @@ a {
 li {
     list-style: none;
 }
-
-.ant-layout {
-        background:rgba(245,245,247,1);
+/* anchor定位 */
+.ant-anchor-wrapper .ant-anchor-ink{
+        right: 0!important;
+        left: auto!important;
 }
 
 .ant-input-group-addon .ant-input-search-button{
