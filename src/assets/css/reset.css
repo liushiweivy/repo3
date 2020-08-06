@@ -58,7 +58,7 @@ li {
         font-size: 14px;
         line-height: 30px;
         text-align: right;
-        padding: 0;
+        padding: 8px 0;
 }
 .ant-anchor-wrapper .ant-anchor {
         margin-top: 20px;

@@ -25,6 +25,9 @@ export default {
                 },{
                         path:'worker',
                         component:resolve=>(require(['@/view/roster/worker/worker'],resolve))
+                },{
+                        path:'registWorker',
+                        component:resolve=>(require(['@/view/roster/registWorker/registWorker'],resolve))
                 }
         ]
 }

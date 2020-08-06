@@ -25,45 +25,55 @@
             <span slot="name">基础信息</span>
             <span slot="suffix" @click="editHanle">编辑</span>
           </line-block-title>
-          
           <info-base v-if="isShow.infoBase"></info-base>
-
         </div>
-        <div id="anchor-info-post" style="width:100%;height:600px;">
+
+        <div id="anchor-info-post">
           <line-block-title>
             <span slot="name">岗位信息</span>
             <span slot="suffix" @click="editHanle">编辑</span>
           </line-block-title>
+          <info-post v-if="isShow.infoPost"></info-post>
         </div>
-        <div id="anchor-info-supply" style="width:100%;height:600px;background:black;">
+
+        <div id="anchor-info-supply">
           <line-block-title>
-            <span slot="name">信息补充</span>
+            <span slot="name">实名制信息补充</span>
             <span slot="suffix" @click="editHanle">编辑</span>
           </line-block-title>
+          <info-supply v-if="isShow.infoSupply"></info-supply>
         </div>
-        <div id="anchor-info-data" style="width:100%;height:600px;background:yellow;">
+
+        <div id="anchor-info-data">
           <line-block-title>
             <span slot="name">资料管理</span>
             <span slot="suffix" @click="editHanle">编辑</span>
           </line-block-title>
+          <info-data v-if="isShow.infoData"></info-data>
         </div>
-        <div id="anchor-info-project" style="width:100%;height:600px;background:black;">
+
+        <div id="anchor-info-project">
           <line-block-title>
             <span slot="name">项目经历</span>
-            <span slot="suffix" @click="editHanle">编辑</span>
+            <!-- <span slot="suffix" @click="editHanle">编辑</span> -->
           </line-block-title>
+          <info-project v-if="isShow.infoProject"></info-project>
         </div>
-        <div id="anchor-info-attendance" style="width:100%;height:600px;background:yellow;">
+
+        <div id="anchor-info-attendance">
           <line-block-title>
             <span slot="name">考勤记录</span>
-            <span slot="suffix" @click="editHanle">编辑</span>
+            <!-- <span slot="suffix" @click="editHanle">编辑</span> -->
           </line-block-title>
+          <info-attendance v-if="isShow.infoAttendance"></info-attendance>
         </div>
-        <div id="anchor-info-salary" style="width:100%;height:600px;background:black;">
+
+        <div id="anchor-info-salary">
           <line-block-title>
             <span slot="name">工资记录</span>
-            <span slot="suffix" @click="editHanle">编辑</span>
+            <!-- <span slot="suffix" @click="editHanle">编辑</span> -->
           </line-block-title>
+          <info-salary v-if="isShow.infoSalary"></info-salary>
         </div>
       </div>
     </div>
@@ -71,15 +81,33 @@
 </template>
 <script>
 import infoBase from "./detail/infoBase"
+import infoPost from "./detail/infoPost"
+import infoSupply from "./detail/infoSupply"
+import infoData from "./detail/infoData"
+import infoProject from "./detail/infoProject"
+import infoAttendance from "./detail/infoAttendance"
+import infoSalary from "./detail/infoSalary"
 export default {
     components:{
-        infoBase
+        infoBase,
+        infoPost,
+        infoSupply,
+        infoData,
+        infoProject,
+        infoAttendance,
+        infoSalary
     },
   data() {
     return {
       targetOffset: undefined,
       isShow:{
-          infoBase:true
+          infoBase:true,
+          infoPost:true,
+          infoSupply:true,
+          infoData:true,
+          infoProject:true,
+          infoAttendance:true,
+          infoSalary:true
       }
     };
   },
