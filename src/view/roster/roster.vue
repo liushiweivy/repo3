@@ -3,7 +3,7 @@
     <!-- <div class="hori-wrap"> -->
       <tree-node></tree-node>
       <!-- <div class=""> -->
-        <router-view></router-view>
+      <router-view></router-view>
       <!-- </div> -->
     <!-- </div> -->
   </div>

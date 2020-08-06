@@ -11,6 +11,18 @@ export default {
                         path:'team',
                         // meta:{name:'项目三'},
                         component:resolve=>(require(['@/view/roster/team/team'],resolve)),
+                        children:[
+                                {
+                                        path:'/',
+                                        redirect:'subcontract'
+                                },
+                                {
+                                        path:'subcontract',
+                                        name:'subcontract',
+                                        meta:{name:'班组列表'},
+                                        component:resolve=>(require(['@/view/roster/team/subcontract/subcontract'],resolve))
+                                }
+                        ]
                         /* children:[
                                 {
                                         path:'/',
