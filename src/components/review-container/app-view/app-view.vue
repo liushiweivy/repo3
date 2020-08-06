@@ -72,7 +72,7 @@
                         position relative
                         background #ffffff
                         overflow hidden
-                        padding 0 59px
+                        padding 0 76.8px
                 .content
                         position relative
                 .logo
@@ -85,10 +85,10 @@
                         display flex
                         align-items center
                         font-size 18px
-                        color #ffffff
+                        color #000000
                         position absolute
                         top 0
-                        right 59px
+                        right 76.8px
                         height 100%
                         z-index 101
                         .company
