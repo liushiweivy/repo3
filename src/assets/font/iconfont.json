@@ -6,6 +6,7 @@
   "description": "华筑科技劳务实名制系统",
   "glyphs": [
     {
+<<<<<<< HEAD
       "icon_id": "16354697",
       "name": "icon-export",
       "font_class": "icon-export",
@@ -20,6 +21,8 @@
       "unicode_decimal": 58912
     },
     {
+=======
+>>>>>>> d0da59d2e161bd1c9babf949ce167cf5e324c83d
       "icon_id": "16326187",
       "name": "tree_part",
       "font_class": "tree_part",

@@ -30,31 +30,30 @@
 </template>
 
 <script>
-        import zh_CN from 'ant-design-vue/lib/locale-provider/zh_CN'
-        import navTopMenu from "@/components/navTopMenu/navTopMenu"
-        import {mapGetters} from 'vuex'
-        export default {
-                name: "app-view",
-                components:{navTopMenu},
-                props:{
-                        navRouter:{
-                                type:Array,
-                                default(){
-                                        return new Array(0)
-                                },
-
-                        }
-                },
-                computed:{
-                        ...mapGetters({loadingStatus:'loadingStatus'})
-                },
-                data() {
-                        return {
-                                collapsed: false,
-                                zh_CN,
-                        };
-                },
-        }
+import zh_CN from "ant-design-vue/lib/locale-provider/zh_CN";
+import navTopMenu from "@/components/navTopMenu/navTopMenu";
+import { mapGetters } from "vuex";
+export default {
+  name: "app-view",
+  components: { navTopMenu },
+  props: {
+    navRouter: {
+      type: Array,
+      default() {
+        return new Array(0);
+      },
+    },
+  },
+  computed: {
+    ...mapGetters({ loadingStatus: "loadingStatus" }),
+  },
+  data() {
+    return {
+      collapsed: false,
+      zh_CN,
+    };
+  },
+};
 </script>
 
 <style scoped lang="stylus">
@@ -137,4 +136,5 @@
                                 background #1583F2
         /*border-bottom 0 solid*/
 
+/* border-bottom 0 solid */
 </style>

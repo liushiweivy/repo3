@@ -20,19 +20,20 @@
 <style scoped lang="stylus">
         .line-block-title
                 padding-bottom 16px
-                border-bottom 1px solid #E9E9E9
+                border-bottom 1px solid rgba(0,0,0,0.15);
                 .inner
                         display flex
                         height 24px
-                        border-left 4px solid #35ACFE
+                        border-left 4px solid #52C41A
                         line-height 24px
                         .title-text
                                 flex 1
                                 vertical-align bottom
                                 padding-left 8px
-                                font-size 16px
+                                font-size 20px
+                                // font-weight bold
                                 color #333333
-                                font-weight 700
+                                font-weight 500
                         .suffix
                                 vertical-align bottom
                                 color #35ACFE
