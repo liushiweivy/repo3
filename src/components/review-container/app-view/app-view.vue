@@ -67,6 +67,7 @@ export default {
                 .page-content
                         position relative
                         flex 1
+                        background:rgba(245,245,247,1);
                 .header
                         position relative
                         background #ffffff

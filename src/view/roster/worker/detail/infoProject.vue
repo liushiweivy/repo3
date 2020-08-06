@@ -21,7 +21,7 @@
         <template slot="opened" slot-scope="prop">{{prop ? '已打开':'已关闭'}}</template>
         <template slot="filed" slot-scope="prop">{{prop ? '已归档':'未归档'}}</template>
         <template slot="projectType" slot-scope="prop">
-          <text-hidden :text="prop" :columns-width="220"></text-hidden>
+          <text-hidden :text="prop" :columns-width="120"></text-hidden>
         </template>
       </a-table>
   </div>

@@ -162,10 +162,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-    review-container{
-        display :flex;
-        flex :1;
-    }
     .team{
         overflow:auto;
         display:flex;

@@ -55,7 +55,6 @@
         <div id="anchor-info-project">
           <line-block-title>
             <span slot="name">项目经历</span>
-            <!-- <span slot="suffix" @click="editHanle">编辑</span> -->
           </line-block-title>
           <info-project v-if="isShow.infoProject"></info-project>
         </div>
@@ -63,7 +62,6 @@
         <div id="anchor-info-attendance">
           <line-block-title>
             <span slot="name">考勤记录</span>
-            <!-- <span slot="suffix" @click="editHanle">编辑</span> -->
           </line-block-title>
           <info-attendance v-if="isShow.infoAttendance"></info-attendance>
         </div>
@@ -71,7 +69,6 @@
         <div id="anchor-info-salary">
           <line-block-title>
             <span slot="name">工资记录</span>
-            <!-- <span slot="suffix" @click="editHanle">编辑</span> -->
           </line-block-title>
           <info-salary v-if="isShow.infoSalary"></info-salary>
         </div>
@@ -154,7 +151,7 @@ export default {
 
     .worker-info {
       flex 1
-      padding-left: 24px;
+      margin-left: 24px;
       // width: 100%;
     }
   }
