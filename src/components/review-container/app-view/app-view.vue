@@ -115,6 +115,7 @@ export default {
                                 overflow hidden
                                 font-size 0
                                 .text
+                                        color #ffffff
                                         font-size 16px
                         .name
                                 padding-left 8px

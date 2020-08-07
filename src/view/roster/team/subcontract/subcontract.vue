@@ -4,7 +4,7 @@
         <div class="header">
                 <div class="subcontract">
                     <span>华筑筑友劳务外包公司0112</span>
-                    <a-button>编辑</a-button>
+                    <a-button @click="visibeView.visibleEdit = true">编辑</a-button>
                 </div>
                 <div class="select">
                     <div>
@@ -13,7 +13,7 @@
                         <a-select style="width: 190px;margin-left: 8px" placeholder="请选择在场状态" allowClear >
                             <a-select-option value="111">111</a-select-option>
                         </a-select>
-                    <a-button style="margin-left: 16px">筛选<a-icon type="filter" /></a-button>
+                    <a-button style="margin-left: 16px" @click="() => {$refs['filtrate'].open();}">筛选<a-icon type="filter" /></a-button>
                     </div>
                     <div>
                         <a-button style="margin-right:16px">批量通过</a-button>
@@ -63,6 +63,32 @@
             <br />
         </div>
         
+
+        <view-model slot="model">
+            <a-modal title="编辑班组" width="720px" :bodyStyle="bodyStyle" :visible="visibeView.visibleEdit" :confirm-loading="confirmLoading" cancelText="取消" okText="保存" @ok="handleOk" @cancel="handleCancel">
+
+                <a-form :form="form">
+                    <a-form-item :label-col="formItemLayout.labelCol" :wrapper-col="formItemLayout.wrapperCol" label="所属参建单位：">
+                        <a-input v-decorator="['username',{ rules: [{ required: true, message: '请输入' }] },]" placeholder="请输入"/>
+                    </a-form-item>
+
+                    <a-form-item :label-col="formItemLayout.labelCol" :wrapper-col="formItemLayout.wrapperCol" label="班组名称：">
+                        <a-input v-decorator="['username',{ rules: [{ required: true, message: '请输入' }] },]" placeholder="请输入"/>
+                    </a-form-item>
+
+                    <a-form-item :label-col="formItemLayout.labelCol" :wrapper-col="formItemLayout.wrapperCol" label="班组长：">
+                        <a-input v-decorator="['username',{ rules: [{ required: true, message: '请输入' }] },]" placeholder="请输入"/>
+                    </a-form-item>
+
+                    <a-form-item :label-col="formItemLayout.labelCol" :wrapper-col="formItemLayout.wrapperCol" label="班组长联系方式：">
+                        <a-input v-decorator="['username',{ rules: [{ required: true, message: '请输入' }] },]" placeholder="请输入"/>
+                    </a-form-item>
+                   
+                </a-form>
+            </a-modal>
+
+            <filtrate ref="filtrate" :filtrate-data="filtrateData" @update="searchHandle"></filtrate>
+        </view-model>
     </div>
         <!-- <div class="team">
             <view-header slot="header">
@@ -88,6 +114,8 @@
         </div> -->
 </template>
 <script>
+import filtrate from "@/components/filtrateDrawer/filtrate";
+// 班组列表信息
 const itemListData=[
     {
         name:'木工班组0112001',
@@ -114,50 +142,136 @@ const itemListData=[
         ]
     }
 ]
+
+const formItemLayout = {
+  labelCol: { span: 5 },
+  wrapperCol: { span: 19 },
+};
+const insideStateOptions = [
+    {value:"在场",label:"在场"},
+    {value:"退场",label:"退场"}
+]
 export default {
-  data() {
-    return {
-        indeterminate:false,
-        checkAll: false,
-        itemListData,
-        checkedList: [],
-    };
-  },
-  methods: {
-    onChange(item,index) {
-        item.checked = !item.checked
-        console.log(this.checkedList)
-        if(item.checked){
-            this.checkedList.push(item)
-        }else{
-            for(let i in this.checkedList){
-                if(!this.checkedList[i].checked){
-                    this.checkedList.splice(i,1)
+    components: {
+        filtrate
+    },
+    data() {
+        return {
+            indeterminate:false, //全选按钮选中部分
+            checkAll: false,  //全选
+            itemListData,  //班组列表信息
+            checkedList: [],  //选中的列表信息
+            visibeView:{
+                visibleEdit:false
+            },
+            confirmLoading:false,  //loading
+            formItemLayout,
+            form: this.$form.createForm(this, { name: 'coordinated' }),
+            fileList: [
+                {
+                    uid: '-1',
+                    name: 'xxx.png',
+                    status: 'done',
+                    url: 'http://www.baidu.com/xxx.png',
+                },
+            ],
+            bodyStyle:{"padding-left":"61px","padding-right":"61px"},
+            // 筛选
+            filtrateData:[
+                {
+                    filtrateType: "checkbox",
+                    model: undefined,
+                    options: insideStateOptions,
+                    label: "在场状态",
+                    placeholder: "请选择在场状态",
+                    key: "insideState"
+                },
+                {
+                    filtrateType: "date-range",
+                    model: undefined,
+                    label: "进场日期",
+                    key: ["startDateFrom", "startDateTo"]
+                },
+                {
+                    filtrateType: "date-range",
+                    model: undefined,
+                    label: "退场日期",
+                    key: ["endDateFrom", "endDateTo"]
+                },
+            ]
+        };
+    },
+    methods: {
+        searchHandle(){},
+        // 列表选择按钮
+        onChange(item,index) {
+            item.checked = !item.checked
+            console.log(this.checkedList)
+            if(item.checked){
+                this.checkedList.push(item)
+            }else{
+                for(let i in this.checkedList){
+                    if(!this.checkedList[i].checked){
+                        this.checkedList.splice(i,1)
+                    }
                 }
             }
-        }
-        this.indeterminate = !!this.checkedList.length && this.checkedList.length < this.itemListData.length 
-        this.checkAll = this.checkedList.length === this.itemListData.length
+            this.indeterminate = !!this.checkedList.length && this.checkedList.length < this.itemListData.length 
+            this.checkAll = this.checkedList.length === this.itemListData.length
+        },
+        // 全选按钮选择
+        onCheckAllChange(e){
+            this.checkAll = e.target.checked
+            if(e.target.checked){
+                this.itemListData.forEach(item => {
+                    item.checked = true
+                })
+                this.indeterminate=false
+                this.checkedList.push(...this.itemListData)
+            }else{
+                this.itemListData.forEach(item => {
+                    item.checked = false
+                })
+                this.checkedList=[]
+            }
+        },
+        // 分页
+        onShowSizeChange(current, pageSize) {
+            console.log(current, pageSize);
+        },
+        // 编辑modal
+        handleOk(e) {
+            // this.ModalText = 'The modal will be closed after two seconds';
+            this.confirmLoading = true;
+            setTimeout(() => {
+              this.visibeView.visibleEdit = false;
+              this.confirmLoading = false;
+            }, 2000);
+        },
+        handleCancel(e) {
+            console.log('Clicked cancel button');
+            this.visibeView.visibleEdit = false;
+        },
+        // 上传附件
+        handleChange(info) {
+            let fileList = [...info.fileList];
+
+            // 1. Limit the number of uploaded files
+            //    Only to show two recent uploaded files, and old ones will be replaced by the new
+            fileList = fileList.slice(-2);
+
+            // 2. read from response and show file link
+            fileList = fileList.map(file => {
+              if (file.response) {
+                // Component will show file.url as link
+                file.url = file.response.url;
+              }
+              return file;
+            });
+
+            this.fileList = fileList;
+        },
     },
-    onCheckAllChange(e){
-        this.checkAll = e.target.checked
-        if(e.target.checked){
-            this.itemListData.forEach(item => {
-                item.checked = true
-            })
-            this.indeterminate=false
-            this.checkedList.push(...this.itemListData)
-        }else{
-            this.itemListData.forEach(item => {
-                item.checked = false
-            })
-            this.checkedList=[]
-        }
-    },
-    onShowSizeChange(current, pageSize) {
-        console.log(current, pageSize);
-    },
-  },
 };
 </script>
 
