@@ -311,7 +311,7 @@ export default {
     .item{
         display:flex;
         margin-top:16px;
-        padding:24px 16px 12px;
+        padding:24px 16px 24px;
         background: #ffffff;
         border-radius:6px;
         border: 1px solid #F5F5F7;
@@ -370,7 +370,7 @@ export default {
     .item-list span{
         font-size:14px;
         display:inline-block;
-        margin-bottom:12px;
+        margin-top:12px;
     }
     .footer{
         margin-top:16px;

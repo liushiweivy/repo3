@@ -13,7 +13,7 @@
                         <!-- <a-select style="width: 190px;margin-left: 8px" placeholder="请选择在场状态" allowClear >
                             <a-select-option value="111">111</a-select-option>
                         </a-select> -->
-                        <a-button style="margin-left: 16px">筛选<a-icon type="filter" /></a-button>
+                        <a-button style="margin-left: 16px" @click="() => {$refs['filtrate'].open();}">筛选<a-icon type="filter" /></a-button>
                     </div>
                     <div>
                         <a-button class="select-button" type="primary">登记入场</a-button>
@@ -77,11 +77,16 @@
             />
             <br />
         </div>
+
+        <view-model slot="model">
+            <filtrate ref="filtrate" :filtrate-data="filtrateData" @update="searchHandle"></filtrate>
+        </view-model>
         
     </div>
        
 </template>
 <script>
+import filtrate from "@/components/filtrateDrawer/filtrate";
 const itemListData=[
     {
         name:'金冬冬',
@@ -106,13 +111,73 @@ const itemListData=[
         ]
     }
 ]
+const insideStateOptions = [
+    {value:"在场",label:"在场"},
+    {value:"退场",label:"退场"}
+]
+const workTypeOptions=[
+    {value:"架子工",label:"架子工"},
+    {value:"砌筑工",label:"砌筑工"},
+    {value:"安装拆卸工",label:"安装拆卸工"},
+    {value:"水电工",label:"水电工"},
+    {value:"钢筋工",label:"钢筋工"},
+    {value:"混凝土工",label:"混凝土工"},
+]
+const warnTypeOptions=[
+    {value:"超龄",label:"超龄"},
+    {value:"合同未录入",label:"合同未录入"},
+    {value:"合同已过期",label:"合同已过期"},
+    {value:"证件过期",label:"证件过期"},
+]
 export default {
-  data() {
-    return {
-        indeterminate:false,
-        checkAll: false,
-        itemListData,
-        checkedList: [],
+    components: {
+        filtrate
+    },
+    data() {
+        return {
+            indeterminate:false,
+            checkAll: false,
+            itemListData,
+            checkedList: [],
+            // 筛选
+            filtrateData:[
+                {
+                    filtrateType: "checkbox",
+                    model: undefined,
+                    options: insideStateOptions,
+                    label: "在场状态",
+                    placeholder: "请选择在场状态",
+                    key: "insideState"
+                },
+                {
+                    filtrateType: "checkbox",
+                    model: undefined,
+                    options: workTypeOptions,
+                    label: "工种",
+                    placeholder: "请选择工种",
+                    key: "workType"
+                },
+                {
+                    filtrateType: "checkbox",
+                    model: undefined,
+                    options: warnTypeOptions,
+                    label: "预警状态",
+                    placeholder: "请选择预警状态",
+                    key: "warnType"
+                },
+                {
+                    filtrateType: "date-range",
+                    model: undefined,
+                    label: "进场日期",
+                    key: ["startDateFrom", "startDateTo"]
+                },
+                {
+                    filtrateType: "date-range",
+                    model: undefined,
+                    label: "退场日期",
+                    key: ["endDateFrom", "endDateTo"]
+                },
+            ]
     };
   },
   methods: {
@@ -149,6 +214,8 @@ export default {
     onShowSizeChange(current, pageSize) {
         console.log(current, pageSize);
     },
+    // 
+    searchHandle(){}
   },
 };
 </script>
@@ -196,7 +263,7 @@ export default {
     .item{
         display:flex;
         margin-top:16px;
-        padding:24px 16px 12px;
+        padding:24px 16px 24px;
         background: #ffffff;
         border-radius:6px;
         border: 1px solid #F5F5F7;
@@ -266,7 +333,7 @@ export default {
     .item-list span{
         font-size:14px;
         display:inline-block;
-        margin-bottom:12px;
+        margin-top:12px;
     }
     .footer{
         margin-top:16px;
