@@ -21,6 +21,12 @@ export default {
                                         name:'subcontract',
                                         meta:{name:'班组列表'},
                                         component:resolve=>(require(['@/view/roster/team/subcontract/subcontract'],resolve))
+                                },
+                                {
+                                        path:'workerlist',
+                                        name:'workerlist',
+                                        meta:{name:'班组列表'},
+                                        component:resolve=>(require(['@/view/roster/team/workerlist/workerlist'],resolve))
                                 }
                         ]
                         /* children:[

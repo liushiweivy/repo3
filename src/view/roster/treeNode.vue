@@ -1,103 +1,73 @@
 <template>
-  <!-- 左侧树结构 -->
-  <div class="type-page">
-    <!-- 搜索 -->
-    <div class="search-input">
-      <a-input-search placeholder="搜索" @search="searchHandle" />
-    </div>
-    <!-- 树 -->
-    <div class="tree-wrap">
-      <div class="tree-box" ref="treeBox" :style="`height:${boxHeight}px;background:#ccc;`">
-        <!-- 第一个父节点 -->
-        <div
-          class="tree-node big-node"
-          :class="isTurnOnTree ? 'act-node':''"
-          @click="openFirstNode"
-        >
-          <div class="left-name">
-            <span class="iconfont my-caret" :class="isOpenTree ? 'caret-act':''">&#xe61d;</span>
-            <span class="iconfont floder-act">&#xe61c;</span>
-            <span class="node-name txt-dot">项目名称（900人）</span>
-          </div>
-        </div>
+  	<!-- 左侧树结构 -->
+  	<div class="type-page">
+    	<!-- 搜索 -->
+    	<div class="search-input">
+    	  <a-input-search placeholder="搜索" @search="searchHandle" />
+    	</div>
+    	<!-- 树 -->
+    	<div class="tree-wrap">
+      		<div class="tree-box" ref="treeBox" :style="`height:${boxHeight}px;background:#ccc;`">
+        		<!-- 第一个父节点 -->
+        		<div class="tree-node big-node" :class="isTurnOnTree ? 'act-node':''" @click="openFirstNode">
+          			<div class="left-name">
+            			<span class="iconfont my-caret" :class="isOpenTree ? 'caret-act':''">&#xe61d;</span>
+            			<span class="iconfont floder-act">&#xe61c;</span>
+            			<span class="node-name txt-dot">项目名称（900人）</span>
+          			</div>
+        		</div>
 
-        <!-- 子节点容器 -->
-        <div
-          class="child-box"
-          v-for="(item,index) in treeData"
-          :key="index"
-          :style="`height:${item.height}px;`"
-        >
-          <!-- 子级父节点 -->
-          <div
-            class="tree-node big-node"
-            :class="item.isTurnOn ? 'act-node':''"
-            @click="openSecondNode(item)"
-          >
-            <div class="left-name">
-              <span
-                :style="item.count>0 ? 'visibility:visible;' : 'visibility:hidden;'"
-                class="iconfont my-caret"
-                :class="item.isOpen ? 'caret-act':''"
-              >&#xe61d;</span>
-              <span class="iconfont floder-act">&#xe61a;</span>
-              <span class="node-name txt-dot">{{item.name+' ('+item.count+')'}}</span>
-            </div>
+        		<!-- 子节点容器 -->
+        		<div class="child-box" v-for="(item,index) in treeData" :key="index" :style="`height:${item.height}px;`">
+          			<!-- 子级父节点 -->
+          			<div class="tree-node big-node" :class="item.isTurnOn ? 'act-node':''" @click="openSecondNode(item)">
+            			<div class="left-name">
+              				<span :style="item.count>0 ? 'visibility:visible;' : 'visibility:hidden;'" class="iconfont my-caret" :class="item.isOpen ? 'caret-act':''">&#xe61d;</span>
+              				<span class="iconfont floder-act">&#xe61a;</span>
+              				<span class="node-name txt-dot">{{item.name+' ('+item.count+')'}}</span>
+            			</div>
 
-            <div class="right-btn-box">
-              <span class="iconfont tree-plus" @click.stop="addChildNode(item)">&#xe61e;</span>
-            </div>
-          </div>
+           				<div class="right-btn-box">
+              				<span class="iconfont tree-plus" @click.stop="addChildNode(item)">&#xe61e;</span>
+            			</div>
+          			</div>
 
-          <!-- 子级子节点 -->
-          <div
-            class="child-box"
-            v-for="(single,index) in item.childData"
-            :key="index"
-            :style="`height:${single.height}px;`"
-          >
-            <!-- 子级父节点 -->
-            <div
-              class="tree-node big-node"
-              :class="single.isTurnOn ? 'act-node':''"
-              @click="openThirdNode(item.id,single.id,item,single)"
-            >
-              <div class="left-name">
-                <span
-                  :style="single.count>0 ? 'visibility:visible;' : 'visibility:hidden;'"
-                  class="iconfont my-caret"
-                  :class="single.isOpen ? 'caret-act':''"
-                >&#xe61d;</span>
-                <span class="iconfont floder-act">&#xe61f;</span>
-                <span class="node-name txt-dot">{{single.name+' ('+single.count+')'}}</span>
-              </div>
+          			<!-- 子级子节点 -->
+          			<div class="child-box" v-for="(single,index) in item.childData" :key="index" :style="`height:${single.height}px;`">
+            			<!-- 子级父节点 -->
+            			<div class="tree-node big-node" :class="single.isTurnOn ? 'act-node':''" @click="openThirdNode(item.id,single.id,item,single)">
+              				<div class="left-name">
+                				<span :style="single.count>0 ? 'visibility:visible;' : 'visibility:hidden;'" class="iconfont my-caret" :class="single.isOpen ? 'caret-act':''">&#xe61d;</span>
+                				<span class="iconfont floder-act">&#xe61f;</span>
+                				<span class="node-name txt-dot">{{single.name+' ('+single.count+')'}}</span>
+              				</div>
 
-              <div class="right-btn-box">
-                <span class="iconfont tree-plus" @click.stop="addChildNode(single)">&#xe61e;</span>
-              </div>
-            </div>
+              				<div class="right-btn-box">
+                				<span class="iconfont tree-plus" @click.stop="addCCNode(single)">&#xe61e;</span>
+              				</div>
+            			</div>
 
-            <!-- 子级子节点 -->
-            <div
-              v-for="(list,index) in single.childData"
-              :key="index"
-              class="tree-node big-node"
-              :class="list.isTurnOn ? 'act-node':''"
-              @click="openFouthNode(item,single,list)"
-            >
-              <div class="left-name last-child">
-                <span class="iconfont floder-act">&#xe61b;</span>
-                <span class="node-name txt-dot">{{list.name+' ('+list.count+')'}}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+            			<!-- 子级子节点 -->
+            			<div v-for="(list,index) in single.childData" :key="index" class="tree-node big-node" :class="list.isTurnOn ? 'act-node':''" @click="openFouthNode(item,single,list)">
+              				<div class="left-name last-child">
+                				<span class="iconfont floder-act">&#xe61b;</span>
+                				<span class="node-name txt-dot">{{list.name+' ('+list.count+')'}}</span>
+              				</div>
+            			</div>
+          			</div>
+        		</div>
+      		</div>
+    	</div>
+
+		<add-child-model v-model="isShowChildNode"></add-child-model>
+		<add-grandchild-model v-model="isShowccChildNode"></add-grandchild-model>
+  	</div>
 </template>
 <script>
+import addChildModel from "./addChildModel"
+import addGrandchildModel from "./addGrandchildModel"
 export default {
+  components:{addChildModel,addGrandchildModel},
   data() {
     return {
       boxHeight: 40,
@@ -177,10 +147,14 @@ export default {
     // 添加表格子节点
     addCCNode(item, single) {
       this.nodeccChildInfo = {
-        instrumentTypeId: item.id,
-        typeName: item.name,
-        producerName: single.name,
-        producerId: single.id,
+        // instrumentTypeId: item.id,
+        // typeName: item.name,
+        // producerName: single.name,
+        // producerId: single.id,
+		instrumentTypeId: "",
+        typeName: "",
+        producerName: "",
+        producerId: "",
       };
       this.isShowccChildNode = true;
     },
@@ -220,6 +194,7 @@ export default {
 
       this.isShowChildNode = true;
     },
+	
     // 子级添加成功回调
     addChildSucHanle(instrumentTypeId, isdel = false) {
       console.log("isDel", isdel, instrumentTypeId);
@@ -481,6 +456,8 @@ export default {
       }
       singleEvent.isOpen = !singleEvent.isOpen;
         console.log(singleEvent);
+
+      this.$router.push({ path: "/roster/team/subcontract" });
       /* for (var i = 0; i < this.treeData.length; i++) {
         if (itemId === this.treeData[i].id) {
           let children = this.treeData[i].childData;
@@ -513,7 +490,8 @@ export default {
     openFouthNode(treeItem, single, listEvent) {
       this.clearSelected();
       listEvent.isTurnOn = true;
-      this.$router.push({ path: "/roster/worker" });
+      // this.$router.push({ path: "/roster/worker" });
+      this.$router.push({ path: "/roster/team/workerlist" });
       this.$forceUpdate();
       return;
     },
