@@ -92,7 +92,7 @@ export default {
         infoData,
         infoProject,
         infoAttendance,
-        infoSalary
+        infoSalary,
     },
   data() {
     return {

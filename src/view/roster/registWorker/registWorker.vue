@@ -212,7 +212,11 @@
           >
             <a-input placeholder="input placeholder" />
           </a-form-item>
-          <!-- <a-form-item></a-form-item> -->
+          <a-form-item></a-form-item>
+
+          <a-form-item :wrapper-col="{ span: 15, offset: 20 }">
+            <a-button >保存并继续</a-button><a-button style="margin-left:24px;" type="primary">保存</a-button>
+          </a-form-item>
         </a-form>
       </div>
     </div>
