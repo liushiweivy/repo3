@@ -95,7 +95,7 @@ new Vue({
                                         this.getUserInfo();        
                                 } else {
                                         // 本地调试无token，code重新获取新的token
-                                        login("c6f0b2da1abd3cdeb9b13f0bac2aca68").then(res => {
+                                        login("3cdcac905f82383888f950d63e7281af").then(res => {
                                                 if (res.success) {
                                                         this.getUserInfo(res);
                                                 }
@@ -114,13 +114,13 @@ new Vue({
                         let userInfo =res.data ? res.user : session.get("USER_INFO");
                         this.setUserName(userInfo.name);
                         this.setUserAvatar(userInfo.avatar);
-                        console.log(this.$route.path);
+                        // console.log(this.$route.path);
                         let resetRouters=["/","/anchor-info-base","/anchor-info-post","/anchor-info-supply","/anchor-info-data","/anchor-info-project","/anchor-info-attendance","/anchor-info-salary"]
                         let isReset=resetRouters.find((item)=>{
                                 return item===this.$route.path
                         })
                         if (isReset) {
-                                this.$router.push({ path: "/roster/worker" });
+                                this.$router.push({ path: "/roster/registWorker" });
                         }
                         // this.loading(1);
                 }
