@@ -95,7 +95,7 @@ new Vue({
                                         this.getUserInfo();        
                                 } else {
                                         // 本地调试无token，code重新获取新的token
-                                        login("f97efa72662b35e4bae7eddc688bf3b3").then(res => {
+                                        login("4e621c7c71b433748e857956e516272e").then(res => {
                                                 if (res.success) {
                                                         this.getUserInfo(res);
                                                 }
@@ -120,7 +120,7 @@ new Vue({
                                 return item===this.$route.path
                         })
                         if (isReset) {
-                                this.$router.push({ path: "/roster/registWorker" });
+                                this.$router.push({ path: "/roster/worker" });
                         }
                         // this.loading(1);
                 }

@@ -3,102 +3,51 @@
     <div class="worker-content">
       <div class="worker-info">
         <a-form layout="horizontal" :form="formData" class="inline-two-col">
+
           <a-form-item
-            label="姓名："
+            label="银行卡号："
             :label-col="formItemLayout.labelCol"
             :wrapper-col="formItemLayout.wrapperCol"
           >
-            <a-input
-              placeholder="input placeholder"
-              v-decorator="['name', { rules: [{ required: true, message: '请填写姓名' }] }]"
+            <a-input placeholder="input placeholder" />
+          </a-form-item>
+          <a-form-item
+            label="文化程度："
+            :label-col="formItemLayout.labelCol"
+            :wrapper-col="formItemLayout.wrapperCol"
+          >
+          <a-select v-decorator="['name', { initialValue:'初中' }]" allowClear>
+          <a-select-option v-for="item in ['小学','初中','高中','专科','本科及以上']" :value="item" :key="item">{{item}}</a-select-option>
+        </a-select>
+          </a-form-item>
+          <a-form-item
+            label="政治面貌："
+            :label-col="formItemLayout.labelCol"
+            :wrapper-col="formItemLayout.wrapperCol"
+          >
+          <a-select v-decorator="['name', { initialValue:'群众' }]" allowClear>
+          <a-select-option v-for="item in ['群众','团员','党员']" :value="item" :key="item">{{item}}</a-select-option>
+        </a-select>
+          </a-form-item>
+          <a-form-item
+            label="是否有重大病史："
+            :label-col="formItemLayout.labelCol"
+            :wrapper-col="formItemLayout.wrapperCol"
+          >
+            <a-radio-group
+              :options="plainOptions"
+              v-decorator="['projectForm', { initialValue:true,rules: [{ required: true, message: '请选择是否有重大病史' }]}]"
             />
           </a-form-item>
-          <a-form-item></a-form-item>
-
           <a-form-item
-            label="上传近照"
-            :label-col="formItemLayout.labelCol"
-            :wrapper-col="formItemLayout.wrapperCol"
-          >
-            <a-upload
-              name="file"
-              list-type="picture-card"
-              class="avatar-uploader"
-              :show-upload-list="false"
-              action="/sio/file/upload"
-              :before-upload="beforeUpload"
-              :headers="axiosHeaders"
-              @change="handleChange"
-              v-decorator="['upload', { rules: [{ required: true, message: '请上传照片' }] }]"
-            >
-                <div v-if="imageUrl" class="avatar">
-                    <img class="avatar-img" :src="imageUrl" alt="avatar" />
-                </div>
-              
-              <div v-else>
-                <a-icon :type="loading ? 'loading' : 'plus'" />
-                <div class="ant-upload-text">上传近照</div>
-              </div>
-            </a-upload>
-            <div class="upload-tip">注：建议工人近照每6个月更新一次</div>
-          </a-form-item>
-          <a-form-item></a-form-item>
-
-          <a-form-item
-            label="身份证号："
-            :label-col="formItemLayout.labelCol"
-            :wrapper-col="formItemLayout.wrapperCol"
-          >
-            <a-input placeholder="input placeholder" />
-          </a-form-item>
-
-          <a-form-item
-            label="签发机关："
+            label="紧急联系人："
             :label-col="formItemLayout.labelCol"
             :wrapper-col="formItemLayout.wrapperCol"
           >
             <a-input placeholder="input placeholder" />
           </a-form-item>
           <a-form-item
-            label="有效期限："
-            :label-col="formItemLayout.labelCol"
-            :wrapper-col="formItemLayout.wrapperCol"
-          >
-            <a-input placeholder="input placeholder" />
-          </a-form-item>
-
-          <a-form-item
-            label="性别："
-            :label-col="formItemLayout.labelCol"
-            :wrapper-col="formItemLayout.wrapperCol"
-          >
-            <a-input placeholder="input placeholder" />
-          </a-form-item>
-          <a-form-item
-            label="民族："
-            :label-col="formItemLayout.labelCol"
-            :wrapper-col="formItemLayout.wrapperCol"
-          >
-            <a-input placeholder="input placeholder" />
-          </a-form-item>
-
-          <a-form-item
-            label="手机号："
-            :label-col="formItemLayout.labelCol"
-            :wrapper-col="formItemLayout.wrapperCol"
-          >
-            <a-input placeholder="input placeholder" />
-          </a-form-item>
-          <a-form-item
-            label="出生日期："
-            :label-col="formItemLayout.labelCol"
-            :wrapper-col="formItemLayout.wrapperCol"
-          >
-            <a-input placeholder="input placeholder" />
-          </a-form-item>
-
-          <a-form-item
-            label="家庭住址："
+            label="紧急电话："
             :label-col="formItemLayout.labelCol"
             :wrapper-col="formItemLayout.wrapperCol"
           >
