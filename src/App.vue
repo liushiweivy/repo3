@@ -24,14 +24,14 @@
                                                 path:'flow',
                                                 name:'工资管理'
                                         },
-                                        /* {
-                                                path:'achievement',
+                                        {
+                                                path:'information',
                                                 name:'信息上报'
                                         },
                                         {
-                                                path:'achievement',
+                                                path:'system',
                                                 name:'系统管理'
-                                        }, */
+                                        }, 
 
                                 ]
                         }

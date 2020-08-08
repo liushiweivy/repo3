@@ -95,7 +95,7 @@ new Vue({
                                         this.getUserInfo();        
                                 } else {
                                         // 本地调试无token，code重新获取新的token
-                                        login("3cdcac905f82383888f950d63e7281af").then(res => {
+                                        login("74ecc42654da3b25994950461c8c138f").then(res => {
                                                 if (res.success) {
                                                         this.getUserInfo(res);
                                                 }
