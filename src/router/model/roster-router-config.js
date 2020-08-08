@@ -29,17 +29,6 @@ export default {
                                         component:resolve=>(require(['@/view/roster/team/workerlist/workerlist'],resolve))
                                 }
                         ]
-                        /* children:[
-                                {
-                                        path:'/',
-                                        redirect:'paperRegister'
-                                },
-                                {
-                                        path:'paperRegister',
-                                        meta:{name:'项目三-1'},
-                                        component:resolve=>(require(['@/view/achievement/achievementList/paperRegister/paperRegister'],resolve)),
-                                }
-                        ] */
                 },{
                         path:'worker',
                         component:resolve=>(require(['@/view/roster/worker/worker'],resolve))
