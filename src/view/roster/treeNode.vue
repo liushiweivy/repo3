@@ -7,7 +7,7 @@
     	</div>
     	<!-- 树 -->
     	<div class="tree-wrap">
-      		<div class="tree-box" ref="treeBox" :style="`height:${boxHeight}px;background:#ccc;`">
+      		<div class="tree-box" ref="treeBox" :style="`height:${boxHeight}px;`">
         		<!-- 第一个父节点 -->
         		<div class="tree-node big-node" :class="isTurnOnTree ? 'act-node':''" @click="openFirstNode">
           			<div class="left-name">
@@ -99,7 +99,7 @@ export default {
           childData: [],
         },
       ], //树节点数据
-      isOpenTree: true,
+      isOpenTree: false,
       isTurnOnTree: true,
       nodeInfo: {
         //第一级 子节点
@@ -391,54 +391,11 @@ export default {
             ];
         let addHeight = treeItem.childData.length * 40;
         this.boxHeight += addHeight;
-        // item.height += addHeight;
         treeItem.height = addHeight + 40;
       }
       treeItem.isOpen = !treeItem.isOpen;
 
-      return
-
-
-      if (!treeItem.isTurnOn) {
-        this.searchIdInfo = {
-          instrumentProducerId: "",
-          instrumentTypeId: treeItem.id,
-        };
-        this.changeNum++;
-      }
-      // console.log(this.changeNum);
-
-      if (this.cChild) this.cChild.isTurnOn = false;
-      this.cChild = treeItem;
-      if (this.ccChild) this.ccChild.isTurnOn = false;
-
-      for (let i = 0; i < this.treeData.length; i++) {
-        if (treeItem.id === this.treeData[i].id) {
-          if (this.treeData[i].isOpen) {
-            this.treeData[i].height = 40;
-            this.boxHeight =
-              this.boxHeight - this.treeData[i].childData.length * 40;
-          } else {
-            let res = {};
-            res.data = [];
-            res.data.forEach((item, index) => {
-              item.isOpen = false;
-              item.isTurnOn = false;
-            });
-
-            this.treeData[i].childData = res.data;
-            this.treeData[i].height =
-              this.treeData[i].childData.length * 40 + 40;
-            this.boxHeight =
-              this.boxHeight + this.treeData[i].childData.length * 40;
-          }
-
-          this.treeData[i].isOpen = !this.treeData[i].isOpen;
-          if (!this.treeData[i].isTurnOn) this.treeData[i].isTurnOn = true;
-          if (this.isTurnOnTree) this.isTurnOnTree = false;
-          break;
-        }
-      }
+      // return
     },
     openThirdNode(itemId, singleId,item, singleEvent) {
       this.clearSelected();
@@ -458,34 +415,6 @@ export default {
         console.log(singleEvent);
 
       this.$router.push({ path: "/roster/team/subcontract" });
-      /* for (var i = 0; i < this.treeData.length; i++) {
-        if (itemId === this.treeData[i].id) {
-          let children = this.treeData[i].childData;
-          children.forEach((single, j) => {
-            // children[j].isOpen = false;
-            if (singleId === single.id) {
-              if (single.isOpen) {
-                // single.isOpen=false
-                let addHeight = single.childData.length * 40;
-                this.boxHeight -= addHeight;
-                this.treeData[i].height -= addHeight;
-                single.height = 40;
-                return;
-              }
-
-              let addHeight = single.childData.length * 40;
-              this.boxHeight += addHeight;
-              this.treeData[i].height += addHeight;
-              single.height = addHeight + 40;
-              // single.isOpen=true
-
-              // this.treeData[i].isOpen = !this.treeData[i].isOpen;
-              // if (!this.treeData[i].isTurnOn) this.treeData[i].isTurnOn = true;
-            }
-          });
-        }
-      } */
-      // console.log(itemId, singleId, this.treeData);
     },
     openFouthNode(treeItem, single, listEvent) {
       this.clearSelected();
