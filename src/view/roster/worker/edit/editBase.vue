@@ -1,19 +1,8 @@
 <template>
   <div class="worker-wrap">
-    <div class="worker-tit">
-      <a-button class="tit-btn">
-        <a-icon type="arrow-left" />返回
-      </a-button>
-      <div class="tit-txt">工人登记入场</div>
-      <div style="width:82px;"></div>
-    </div>
     <div class="worker-content">
       <div class="worker-info">
         <a-form layout="horizontal" :form="formData" class="inline-two-col">
-          <line-block-title style="margin-bottom:24px;">
-            <span slot="name">基础信息</span>
-          </line-block-title>
-
           <a-form-item
             label="姓名："
             :label-col="formItemLayout.labelCol"
@@ -116,106 +105,8 @@
             <a-input placeholder="input placeholder" />
           </a-form-item>
 
-          <a-form-item :wrapper-col="{ span: 15, offset: 22 }">
-            <a-button type="primary">信息验证</a-button>
-          </a-form-item>
-
-          <line-block-title style="margin:24px 0;">
-            <span slot="name">实名制信息补充</span>
-          </line-block-title>
-
-          <a-form-item
-            label="银行卡号："
-            :label-col="formItemLayout.labelCol"
-            :wrapper-col="formItemLayout.wrapperCol"
-          >
-            <a-input placeholder="input placeholder" />
-          </a-form-item>
-          <a-form-item
-            label="文化程度："
-            :label-col="formItemLayout.labelCol"
-            :wrapper-col="formItemLayout.wrapperCol"
-          >
-          <a-select v-decorator="['name', { initialValue:'初中' }]" allowClear>
-          <a-select-option v-for="item in ['小学','初中','高中','专科','本科及以上']" :value="item" :key="item">{{item}}</a-select-option>
-        </a-select>
-          </a-form-item>
-          <a-form-item
-            label="政治面貌："
-            :label-col="formItemLayout.labelCol"
-            :wrapper-col="formItemLayout.wrapperCol"
-          >
-          <a-select v-decorator="['name', { initialValue:'群众' }]" allowClear>
-          <a-select-option v-for="item in ['群众','团员','党员']" :value="item" :key="item">{{item}}</a-select-option>
-        </a-select>
-          </a-form-item>
-          <a-form-item
-            label="是否有重大病史："
-            :label-col="formItemLayout.labelCol"
-            :wrapper-col="formItemLayout.wrapperCol"
-          >
-            <a-radio-group
-              :options="plainOptions"
-              v-decorator="['projectForm', { initialValue:true,rules: [{ required: true, message: '请选择是否有重大病史' }]}]"
-            />
-          </a-form-item>
-          <a-form-item
-            label="紧急联系人："
-            :label-col="formItemLayout.labelCol"
-            :wrapper-col="formItemLayout.wrapperCol"
-          >
-            <a-input placeholder="input placeholder" />
-          </a-form-item>
-          <a-form-item
-            label="紧急电话："
-            :label-col="formItemLayout.labelCol"
-            :wrapper-col="formItemLayout.wrapperCol"
-          >
-            <a-input placeholder="input placeholder" />
-          </a-form-item>
-
-          <line-block-title style="margin:24px 0;">
-            <span slot="name">岗位信息</span>
-          </line-block-title>
-          <a-form-item
-            label="参建单位："
-            :label-col="formItemLayout.labelCol"
-            :wrapper-col="formItemLayout.wrapperCol"
-          >
-            <a-input placeholder="input placeholder" />
-          </a-form-item>
-          <a-form-item
-            label="班组："
-            :label-col="formItemLayout.labelCol"
-            :wrapper-col="formItemLayout.wrapperCol"
-          >
-            <a-input placeholder="input placeholder" />
-          </a-form-item>
-          <a-form-item
-            label="工种："
-            :label-col="formItemLayout.labelCol"
-            :wrapper-col="formItemLayout.wrapperCol"
-          >
-            <a-input placeholder="input placeholder" />
-          </a-form-item>
-          <a-form-item
-            label="进场日期："
-            :label-col="formItemLayout.labelCol"
-            :wrapper-col="formItemLayout.wrapperCol"
-          >
-            <a-input placeholder="input placeholder" />
-          </a-form-item>
-          <a-form-item
-            label="日薪标准："
-            :label-col="formItemLayout.labelCol"
-            :wrapper-col="formItemLayout.wrapperCol"
-          >
-            <a-input placeholder="input placeholder" />
-          </a-form-item>
-          <a-form-item></a-form-item>
-
           <a-form-item :wrapper-col="{ span: 15, offset: 20 }">
-            <a-button >保存并继续</a-button><a-button style="margin-left:24px;" type="primary">保存</a-button>
+            <a-button @click="cancelHandle">取消</a-button><a-button @click="cancelHandle" style="margin-left:24px;" type="primary">保存</a-button>
           </a-form-item>
         </a-form>
       </div>
@@ -256,6 +147,9 @@ export default {
     },
   },
   methods: {
+      cancelHandle(){
+          this.$emit('cancel')
+      },
     handleChange(info) {
       if (info.file.status === "uploading") {
         this.loading = true;

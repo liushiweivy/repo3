@@ -122,14 +122,14 @@ export const countCcInstance = () => {
 
 /****************************项目管理***************************/
 //合作单位列表
-export const getPartnerList = data => {
-        return $http({
-                url: "/research/partner/getProjectPartnerList",
-                method: POST,
-                headers: FORM_TYPE,
-                data
-        });
-};
+// export const getPartnerList = data => {
+//         return $http({
+//                 url: "/research/partner/getProjectPartnerList",
+//                 method: POST,
+//                 headers: FORM_TYPE,
+//                 data
+//         });
+// };
 
 //查看合作单位
 export const getPartner = projectPartnerId => {

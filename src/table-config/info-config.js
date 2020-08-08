@@ -1,7 +1,7 @@
 //工人信息 项目经历
 export const infoProject = [
         { title: '序号', width: 70, key: 'serialNo', fixed: 'left', dataIndex: 'serialNo' },
-        { title: '项目名称', width: 240, key: 'name', dataIndex: 'name', scopedSlots: { customRender: 'name' } },
+        { title: '项目名称', width: 240, key: 'name', dataIndex: 'name' },
         { title: '项目编号', width: 120, key: 'applyNo', dataIndex: 'applyNo' },
         { title: '项目年度', dataIndex: 'gmtCreated', key: 'gmtCreated', width: 120 },
         { title: '负责人', width: 240, dataIndex: 'leader', key: 'leader' },
@@ -19,7 +19,7 @@ export const infoProject = [
 //工人信息 考勤记录
 export const infoAttendance = [
         { title: '序号', width: 70, key: 'serialNo', fixed: 'left', dataIndex: 'serialNo' },
-        { title: '项目名称', width: 240, key: 'name', dataIndex: 'name', scopedSlots: { customRender: 'name' } },
+        { title: '项目名称', width: 240, key: 'name', dataIndex: 'name' },
         { title: '项目编号', width: 120, key: 'applyNo', dataIndex: 'applyNo' },
         { title: '项目年度', dataIndex: 'gmtCreated', key: 'gmtCreated', width: 120 },
         { title: '负责人', width: 240, dataIndex: 'leader', key: 'leader' },
@@ -37,7 +37,7 @@ export const infoAttendance = [
 //工人信息 工资记录
 export const infoSalary = [
         { title: '序号', width: 70, key: 'serialNo', fixed: 'left', dataIndex: 'serialNo' },
-        { title: '项目名称', width: 240, key: 'name', dataIndex: 'name', scopedSlots: { customRender: 'name' } },
+        { title: '项目名称', width: 240, key: 'name', dataIndex: 'name' },
         { title: '项目编号', width: 120, key: 'applyNo', dataIndex: 'applyNo' },
         { title: '项目年度', dataIndex: 'gmtCreated', key: 'gmtCreated', width: 120 },
         { title: '负责人', width: 240, dataIndex: 'leader', key: 'leader' },

@@ -9,13 +9,6 @@
         :pagination="pagination"
       >
         <template slot="processState" slot-scope="prop">{{prop|taskProgress}}</template>
-        <template slot="name" slot-scope="prop,props">
-          <p
-            class="text-dot-one name-btn"
-            style="max-width:208px;"
-            @click="visibleProjectApproval(props)"
-          >{{prop}}</p>
-        </template>
         <template slot="budgetType" slot-scope="prop">{{prop|budgetType}}</template>
         <template slot="expenseOpened" slot-scope="prop">{{prop ? '已开放':'已关闭'}}</template>
         <template slot="opened" slot-scope="prop">{{prop ? '已打开':'已关闭'}}</template>
@@ -25,34 +18,32 @@
         </template>
         <template slot="action" slot-scope="param,params">
           <row-btn-group>
-            <row-btn @click="visibleProjectApproval(params)">查看</row-btn>
+            <row-btn @click="()=>{
+                attendanceId=params.id
+                visibleModelType.attendanceModel=true
+              }">查看</row-btn>
           </row-btn-group>
         </template>
       </a-table>
-    
+    <attendance-model v-model="visibleModelType.attendanceModel" :defaultId="attendanceId"></attendance-model>
   </div>
 </template>
 <script>
 import { infoAttendance } from "@/table-config/info-config";
 import { getProjectSecondaryTaskList } from "@/request/api";
 import { pagination } from "@/mixin/pagination";
-// import { tableRowAction } from "../tableRowAction-mixin";
 import {yearOptions} from "@/tool/tool"
-
-// import filtrate from "@/components/filtrateDrawer/filtrate";
-// import projectApproval from "./projectApproval";
-// import addDrawer from "./addDrawer";
+import attendanceModel from "./attendanceModel";
 
 export default {
-  // components: { filtrate, addDrawer, projectApproval },
+  components: { attendanceModel },
   mixins: [pagination],
   data() {
     return {
-      // notAuto:true,
-      // visibleModelType: {
-      //   visibleAdd: false,
-      //   visibleApproval: false
-      // },
+      attendanceId:"",
+      visibleModelType: {
+        attendanceModel: false
+      },
       filtrateData: [
         {
           filtrateType: "select",

@@ -25,11 +25,14 @@
         </template>
         <template slot="action" slot-scope="param,params">
           <row-btn-group>
-            <row-btn @click="visibleProjectApproval(params)">查看</row-btn>
+            <row-btn @click="()=>{
+                salaryId=params.id
+                visibleModelType.salaryModel=true
+              }">查看</row-btn>
           </row-btn-group>
         </template>
       </a-table>
-    
+    <salary-model v-model="visibleModelType.salaryModel" :defaultId="salaryId"></salary-model>
   </div>
 </template>
 <script>
@@ -37,12 +40,18 @@ import { infoSalary } from "@/table-config/info-config";
 import { getProjectSecondaryTaskList } from "@/request/api";
 import { pagination } from "@/mixin/pagination";
 import {yearOptions} from "@/tool/tool"
+import salaryModel from "./salaryModel";
 
 export default {
+  components: { salaryModel },
   mixins: [pagination],
   data() {
     return {
-      columns: infoSalary
+      salaryId:"",
+      columns: infoSalary,
+      visibleModelType: {
+        salaryModel: false
+      },
     };
   },
   methods: {
