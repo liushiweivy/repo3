@@ -33,7 +33,7 @@
                     </div>
                     <div class="item-message">
                         <div class="item-img">
-                            <!-- <img src="../../../../assets/img/bg-logo@2x.png" alt="" style="width:100%"> -->
+                            <img src="../../../../assets/img/avatar.jpg" alt="" style="width:100%">
                         </div>
                         <div class="item-information">
                             <div class="item-title" style="margin-bottom:16px;">
@@ -41,15 +41,15 @@
                                     <span class="item-name">{{item.name}}</span>
                                     <span style="color:rgba(0,0,0,0.45);font-size:14px">{{item.gender}} | {{item.age}}岁</span>
                                     <div>
-                                        <span style="background:#1890FF">班组长</span>
-                                        <span style="background:#52C41A">在场</span>
-                                        <span style="background:#51D7CA">在册</span>
-                                        <span style="background:#FAAD14">已退场</span>
-                                        <span style="background:#F5222D">合同未录入</span>
-                                        <span style="background:#F5222D">合同已过期</span>
-                                        <span style="background:#F5222D">证件已过期</span>
-                                        <span style="background:#F5222D">超龄</span>
-                                        <span style="background:#F5222D">考勤异常</span>
+                                        <a-tag color="#1890FF">班组长</a-tag>
+                                        <a-tag color="#52C41A">在场</a-tag>
+                                        <a-tag color="#51D7CA">在册</a-tag>
+                                        <a-tag color="#FAAD14">已退场</a-tag>
+                                        <a-tag color="#F5222D">合同未录入</a-tag>
+                                        <a-tag color="#F5222D">合同已过期</a-tag>
+                                        <a-tag color="#F5222D">证件已过期</a-tag>
+                                        <a-tag color="#F5222D">超龄</a-tag>
+                                        <a-tag color="#F5222D">考勤异常</a-tag>
                                     </div>
                                 </div>
                                 <div class="item-operation">
