@@ -16,7 +16,7 @@
                     <a-button style="margin-left: 16px" @click="() => {$refs['filtrate'].open();}">筛选<a-icon type="filter" /></a-button>
                     </div>
                     <div>
-                        <a-button style="margin-right:16px">批量通过</a-button>
+                        <a-button style="margin-right:16px">批量在场</a-button>
                         <a-button>批量退场</a-button>
                     </div>
                 </div>
