@@ -17,7 +17,7 @@
                                                 name:'花名册'
                                         },
                                         {
-                                                path:'expenditure',
+                                                path:'attendance',
                                                 name:'考勤管理'
                                         },
                                         {
