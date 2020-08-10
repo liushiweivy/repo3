@@ -13,7 +13,7 @@ steps:
 - name: publish
   image: plugins/docker
   settings:
-    repo: registry-vpc.cn-shenzhen.aliyuncs.com/dingteam-project/front-sio-project-research
+    repo: registry-vpc.cn-shenzhen.aliyuncs.com/dingteam-project/front-hzlwsm-pc
     registry: registry-vpc.cn-shenzhen.aliyuncs.com
     dockerfile: docker/Dockerfile
     mirror: 'https://qo44bdgw.mirror.aliyuncs.com'
@@ -25,7 +25,7 @@ steps:
 - name: restart
   image: registry-vpc.cn-shenzhen.aliyuncs.com/dingteam/oss:1.6.0
   commands:
-    - curl -X POST "https://cs.console.aliyun.com/hook/trigger?token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbHVzdGVySWQiOiJjM2JjYzljZDllMzA4NDY5YmJjMzEzYzgyMmI3OTFhZDAiLCJpZCI6IjY2MDAzIn0.Yb0662JP0iKFuWHoQrQhQYym_W6dXf_UDdUR016fCZoBpdElQRsLMps4BcOPAgIxqiwi8syv_DF2ytnn7pvnX2_wOznx34C-BBPi2_N59mCQc_NlilK9Dy-5GXey_ZwmTzc178hJalv2f6l7g4VJJ3DeT_Fo4rwysbbIXBT5pLI"
+    - curl -X POST "https://cs.console.aliyun.com/hook/trigger?token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbHVzdGVySWQiOiJjM2JjYzljZDllMzA4NDY5YmJjMzEzYzgyMmI3OTFhZDAiLCJpZCI6IjkyNzE0In0.j8JD6bu2R0nYOfpxFRCEXjnlXVzIvip_rF3Lt_KqQ3pJ2K1GeSv5XlvN_rTTCsOBUB1xrt0TagJ8POIXkPm_-_OzfyVpaOV1n-xIdE44NrDhjBDnETHG9k9QLhigLSSHTl6AZ37eNK6NbbHxqRavorAYjkRggPLniaQR9dRjGxE"
 
 
 - name: notification
@@ -65,7 +65,7 @@ steps:
 - name: publish
   image: plugins/docker
   settings:
-    repo: registry.cn-hangzhou.aliyuncs.com/dingteam-project/front-sio-project-research
+    repo: registry.cn-hangzhou.aliyuncs.com/dingteam-project/front-hzlwsm-pc
     registry: registry.cn-hangzhou.aliyuncs.com
     dockerfile: docker/Dockerfile
     mirror: 'https://qo44bdgw.mirror.aliyuncs.com'

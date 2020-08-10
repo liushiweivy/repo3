@@ -1,7 +1,7 @@
 <template>
   <div class="worker-wrap">
     <div class="worker-tit">
-      <a-button class="tit-btn">
+      <a-button class="tit-btn" @click="$router.push({ path: '/roster/team/workerlist' })">
         <a-icon type="arrow-left" />返回
       </a-button>
       <div class="tit-txt">工人登记入场</div>

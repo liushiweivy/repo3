@@ -16,7 +16,7 @@
                         <a-button style="margin-left: 16px" @click="() => {$refs['filtrate'].open();}">筛选<a-icon type="filter" /></a-button>
                     </div>
                     <div>
-                        <a-button class="select-button" type="primary">登记入场</a-button>
+                        <a-button class="select-button" type="primary" @click="$router.push({ path: '/roster/registWorker' })">登记入场</a-button>
                         <a-button class="select-button">批量在场</a-button>
                         <a-button class="select-button">批量退场</a-button>
                         <a-button class="select-button">导入</a-button>
@@ -26,7 +26,7 @@
         </div>
         <!-- 列表 -->
         <div class="container">
-                <div class="item" v-for="(item,index) in itemListData" :key="index">
+                <div class="item" @click="$router.push({ path: '/roster/worker' })" v-for="(item,index) in itemListData" :key="index">
                     <div class="item-state">
                         <a-checkbox @change="onChange(item,index)" :checked=item.checked>
                         </a-checkbox>

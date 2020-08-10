@@ -120,7 +120,7 @@ new Vue({
                                 return item===this.$route.path
                         })
                         if (isReset) {
-                                this.$router.push({ path: "/roster/worker" });
+                                this.$router.push({ path: "/system/entryRules" });
                         }
                         // this.loading(1);
                 }
