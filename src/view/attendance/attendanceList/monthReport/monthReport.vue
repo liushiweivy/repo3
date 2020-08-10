@@ -15,7 +15,7 @@
         </div>
         <!-- 列表 -->
         <div class="container">
-            <attendance-list-model :columns="columns" :message="dataSource"></attendance-list-model>
+            <attendance-table :columns="columns" :message="dataSource"></attendance-table>
             <!-- <a-table
             :row-selection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange,hideDefaultSelections:false,fixed:true,columnWidth:60 }"
             :columns="columns"
@@ -40,14 +40,16 @@
             <!-- <attendance-model v-model="visibeView.attendanceModel" :defaultId="attendanceId"></attendance-model> -->
 
             <filtrate ref="filtrate" :filtrate-data="filtrateData" @update="searchHandle"></filtrate>
+            <!-- <reissue-model v-model="visibeView.visibleReissue"></reissue-model> -->
         </view-model>
     </div>
       
 </template>
 <script>
 import filtrate from "@/components/filtrateDrawer/filtrate";
+import reissueModel from "../../reissueModel";
 import {pagination} from "@/mixin/pagination"
-import attendanceListModel from "../attendanceListModel"
+import attendanceTable from "../attendanceTable"
 // import attendanceModel from "../../../roster/worker/detail/attendanceModel";
 // import {pagination} from "@/mixin/pagination"
 
@@ -173,7 +175,8 @@ export default {
     components: {
         filtrate,
         // attendanceModel,
-        attendanceListModel
+        attendanceTable,
+        reissueModel
     },
     mixins:[pagination],
     data() {
@@ -185,6 +188,7 @@ export default {
             visibeView:{
                 visibleEdit:false,
                 // attendanceModel:false //考勤详情
+                visibleReissue:false
             },         
             confirmLoading:false,  //loading
             formItemLayout,

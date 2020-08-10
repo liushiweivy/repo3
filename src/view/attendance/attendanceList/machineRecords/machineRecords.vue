@@ -17,7 +17,7 @@
         </div>
         <!-- 列表 -->
         <div class="container">
-            <attendance-list-model :columns="columns" :message="dataSource"></attendance-list-model>
+            <attendance-table :columns="columns" :message="dataSource"></attendance-table>
             <!-- <a-table
             :row-selection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange,hideDefaultSelections:false,fixed:true,columnWidth:60 }"
             :columns="columns"
@@ -49,7 +49,7 @@
 <script>
 import filtrate from "@/components/filtrateDrawer/filtrate";
 import {pagination} from "@/mixin/pagination"
-import attendanceListModel from "../attendanceListModel"
+import attendanceTable from "../attendanceTable"
 // import attendanceModel from "../../../roster/worker/detail/attendanceModel";
 // import {pagination} from "@/mixin/pagination"
 
@@ -158,7 +158,7 @@ export default {
     components: {
         filtrate,
         // attendanceModel,
-        attendanceListModel
+        attendanceTable
     },
     mixins:[pagination],
     data() {

@@ -128,6 +128,7 @@ const warnTypeOptions=[
     {value:"合同未录入",label:"合同未录入"},
     {value:"合同已过期",label:"合同已过期"},
     {value:"证件过期",label:"证件过期"},
+    {value:"考勤异常",label:"考勤异常"},
 ]
 export default {
     components: {

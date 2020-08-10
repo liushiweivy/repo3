@@ -151,7 +151,7 @@ export default {
         // typeName: item.name,
         // producerName: single.name,
         // producerId: single.id,
-		instrumentTypeId: "",
+		    instrumentTypeId: "",
         typeName: "",
         producerName: "",
         producerId: "",

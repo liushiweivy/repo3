@@ -5,7 +5,7 @@
             :columns="columns"
             :style="{ 'wordBreak':'break-all'}"
             :dataSource="dataSource"
-            :scroll="{y:`calc(60vh - 220px)`,x:1500}"
+            :scroll="{y:`calc(60vh - 220px)`,x:'max-content'}"
             :pagination="pagination"
             >
                 <template slot="action" slot-scope="param,params">
